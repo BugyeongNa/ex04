@@ -1,0 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<c:set var="ctxPath" value="<%=request.getContextPath() %>" />      
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+<body>
+	 <div class="container m-3 p-3 m-auto">
+        <div class="w-50 m-auto">
+        <form action="${ctxPath}/fileupload" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Default file input example</label>
+                <input class="form-control" type="file" name="file1" id="formFile">
+            </div>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Default file input example</label>
+                <input class="form-control" type="file" name="file2" id="formFile">
+            </div>
+            <div class="mb-3">
+                <label for="param1" class="form-label">매개변수1</label>
+                <input type="text" class="form-control" name="param1" id="param1">
+            </div>
+            <div class="mb-3">
+                <label for="param2" class="form-label">매개변수2</label>
+                <input type="text" class="form-control" name="param2" id="param2">
+            </div>
+            <div class="mb-3">
+                <label for="param3" class="form-label">매개변수3</label>
+                <input type="text" class="form-control" name="param3" id="param3">
+            </div>
+            <div class="mb-3 col-4 m-auto">
+                <input type="submit" class="form-control btn btn-info" value="업로드">
+            </div>
+        </form>
+    </div>
+    </div>
+</body>
+</html>

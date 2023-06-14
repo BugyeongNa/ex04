@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트에서 쿠키 사용(팝업창예제)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script>
+        // onload(): html요소가 메모리로딩 되면 함수호출
+        window.onload = pageLoad;
+        function pageLoad(){
+            notShowPop = getCookieValue();
+            if(notShowPop != "true"){
+                window.open('popUP.html','pop','width=400,height=500, hostory=no, resize=no scrollbar=yes');
+            }
+        }
+        function getCookieValue(){
+            let result = "false";
+           
+            if (document.cookie != "") {
+                cookie = document.cookie.split(";")
+                for (let i=0; i<cookie.length; i++){
+                    element = cookie[i].split("=")
+                    value = element[0]
+                    value = value.replace(/^s*/,'')// 정규식 공백제거
+
+                    if (value = "notShowPop"){
+                        result = element[1];
+                    }
+                }
+            }
+
+            return result;
+        }
+        function deleteCookie(){
+            document.cookie = "notShowPop="+"false"+";path=/; expires=-1"
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <form class="form-control m-3 p-3 d-flex justify-content-center">
+            <input type="button" value="쿠키삭제" onclick="deleteCookie()" class="btn btn-success btn-sm">
+        </form>
+    </div>
+
+</body>
+</html>
