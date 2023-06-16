@@ -14,7 +14,7 @@ import com.member.service.MemberService;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
-@WebServlet("/reg/update.do")
+@WebServlet("/tmember/update.do")
 public class MemberUpdateController extends HttpServlet{
 	
 	private MemberService memberService;
@@ -47,9 +47,9 @@ public class MemberUpdateController extends HttpServlet{
 		dto.setPwd(req.getParameter("pwd"));
 		dto.setEmail(req.getParameter("email"));
 		
-		int result = memberService.modifyMember(dto);
+		memberService.modifyMember(dto);
 		
-		nextPage ="/member/list.do";
+		nextPage ="/tmember/list.do";
 		resp.sendRedirect(req.getContextPath()+ nextPage);
 		
 	}

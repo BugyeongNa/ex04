@@ -23,7 +23,7 @@
             </div>
             <hr>
             <div class="w-75 border p-3 m-3 m-auto ">
-                <form action="${ctxPath}/member//insertMember.do" id="updateForm">
+                <form action="${ctxPath}/tmember/insert.do" id="updateForm" method="post">
                     <div class="mb-3">
                         <label  class="form-label">ID</label>
                         <input type="text" name="id" value="${member.id}" class="form-control" id="id" >
@@ -51,7 +51,7 @@
                     </div>
                     <div class="messageEmail text-danger"></div>
                     <div class="mb-3">
-                        <input type="submit" id="updateBtn" class="btn btn-success" value="수정하기">
+                        <input type="submit" id="updateBtn" class="btn btn-success" value="가입하기">
                         <a href="${ctxPath}/member/listMember.do" class="btn btn-secondary">목록</a>
                     </div>
                 </form>
@@ -79,7 +79,7 @@
     			$.ajax({
     				type: 'post',
     				async: false,
-    				url: "/web01/member/checkId.do",
+    				url: "${ctxPath}/tmember/checkId.do",
     				dataType: "text",
     				data: { id: send_id},
     				success: function(data,textStatus) {

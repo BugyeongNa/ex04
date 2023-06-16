@@ -15,7 +15,7 @@ import com.member.service.MemberService;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
-@WebServlet("/member/list.do")
+@WebServlet("/tmember/list.do")
 public class MemberListController2  extends HttpServlet{
 	// 서비스 객체를 생성(dao, modelMapper)
 	private MemberService memberService = MemberService.INSTANCE;
@@ -32,7 +32,7 @@ public class MemberListController2  extends HttpServlet{
 	protected void doHandler(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
 		
 		
-		List<TMemberDTO> memberList = memberService.memberList();
+		List<TMemberDTO> memberList = memberService.listMember();
 		req.setAttribute("memberList", memberList);
 		
 		nextPage ="/member2/listMember.jsp";

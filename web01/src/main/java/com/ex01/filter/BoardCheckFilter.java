@@ -21,7 +21,7 @@ import com.ex01.service.MemberService;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
-@WebFilter(urlPatterns = {"/boardlist/board/*"})
+@WebFilter(urlPatterns = {"/boardlist/board/*", "/tmember/*"})
 public class BoardCheckFilter implements Filter{
 	
 	@Override

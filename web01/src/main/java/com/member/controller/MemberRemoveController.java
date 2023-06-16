@@ -13,7 +13,7 @@ import com.member.service.MemberService;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
-@WebServlet("/reg/delete.do")
+@WebServlet("/tmember/delete.do")
 public class MemberRemoveController extends HttpServlet {
 
 	
@@ -30,6 +30,10 @@ public class MemberRemoveController extends HttpServlet {
 	}
 	
 	protected void doHandler(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String id = req.getParameter("id");
+		memberService.deleteMember(id);
 		
+		String nextPage ="/tmember/list.do";
+		resp.sendRedirect(req.getContextPath()+ nextPage);
 	}
 }

@@ -167,8 +167,8 @@ public class FormentMemberController extends HttpServlet{
 				HttpSession session = req.getSession();
 				session.setAttribute("formentTest", DTO);
 				
-				nextPage =  "/testforment/member/myPage";
-				resp.sendRedirect(req.getContextPath()+ nextPage);
+				nextPage =  "/testforment/member/myPage?id=";
+				resp.sendRedirect(req.getContextPath()+ nextPage+id);
 			
 			} catch (Exception e) {
 				System.out.println(id);

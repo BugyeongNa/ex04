@@ -14,6 +14,7 @@ import com.ex01.dto.TMemberDTO;
 import com.ex01.util.MapperUtil;
 import com.ex01.util.MybatisManager;
 import com.member.mapper.MemberMapper;
+import com.member.mapper.MemberSqlDivMapper;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -22,7 +23,8 @@ public class OracleDAOTest {
 
 //	private TMemberDAO tdao;
 	private ModelMapper modelMapper;
-	private MemberMapper memberMapper;
+//	private MemberSMapper memberMapper;
+	private MemberSqlDivMapper memberSqlDivMapper;
 	
 	SqlSessionFactory factory , factoryXml;
 	SqlSession session, sessionXml; 
@@ -39,17 +41,18 @@ public class OracleDAOTest {
 		try {
 			session =  factory.openSession();
 //			java 어노테이션으로 연결한 query문
-			memberMapper = session.getMapper(MemberMapper.class);
+//			memberMapper = session.getMapper(MemberMapper.class);
+			memberSqlDivMapper = session.getMapper(MemberSqlDivMapper.class);
 		} catch (Exception e) {
 		}
 
 	}
 	
-	@BeforeEach
-	public void readXml() {
-		factoryXml = ConnectionOracleUtil.INSTANCE.getSqlSessionFactoryXML();
-		sessionXml = MybatisManager.getInstance().openSession();
-	}
+//	@BeforeEach
+//	public void readXml() {
+//		factoryXml = ConnectionOracleUtil.INSTANCE.getSqlSessionFactoryXML();
+//		sessionXml = MybatisManager.getInstance().openSession();
+//	}
 	
 	@After
 	public void close() {
@@ -57,38 +60,38 @@ public class OracleDAOTest {
 //		sessionXml.close();
 	}
 	
+//	@Test
+//	public void testGetTime() {
+//		try {
+//			String getTime = memberSqlDivMapper.getTime();
+//			log.info(" getTime(): mybatis: "+getTime);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
+	
 	@Test
-	public void testGetTime() {
+	public void testSelectAll() {
 		try {
-			String getTime = memberMapper.getTime();
-			log.info(" getTime(): mybatis: "+getTime);
+			List<TMemberVO> memberVO = memberSqlDivMapper.listMember();
+			log.info("mybatis mapper memberVO(): "+memberVO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	@Test
-	public void testSelectAll() {
-		try {
-			List<TMemberVO> memberVO = memberMapper.selectAll();
-			log.info("mybatis mapper memberVO(): "+memberVO);
-		} catch (Exception e) {
-		}
-	}
-	
-	@Test
 	public void testMemberRegister() {
 			TMemberVO vo = TMemberVO.builder()
-					.id("ysa")
+					.id("ysa2")
 					.pwd("1111")
 					.name("양산아")
 					.email("ysa@naver.com")
 					.build();
 //			mybatis에서 제공하는 sqlsession활용 테스트
 			System.out.println("vo"+ vo);
-			int insertResult = memberMapper.addMember(vo);
+			memberSqlDivMapper.addMember(vo);
 			session.commit();
-			log.info("\n mybatis mapper insert(): "+ insertResult);
 	
 	}
 	
@@ -118,17 +121,6 @@ public class OracleDAOTest {
 			log.info("\n mybatis mapper delete(): "+ deleteOK);	
 	}
 	
-	@Test
-	public void testFindMembersAll() {
-		List<TMemberVO> vo = memberMapper.findMembersAll();
-		log.info("\n mybatis mapper findMembersAll(): "+ vo);	
-	}
-	
-	@Test
-	public void testFindMembersAll2() {
-		List<TMemberVO> vo = memberMapper.findMembersAll2();
-		log.info("\n mybatis mapper findMembersAll2(): "+ vo);	
-	}
 	
 	@Test
 	public void testFindMembersByNameAll() {
@@ -142,41 +134,11 @@ public class OracleDAOTest {
 		log.info("\n mybatis mapper ViewMemberId(): "+ vo);
 	}
 	
-	@Test
-	public void testAddMember2() {
-			
-		TMemberVO vo = TMemberVO.builder()
-					.id("ysa")
-					.pwd("1111")
-					.name("양산아")
-					.email("ysa@naver.com")
-					.build();
-			System.out.println("vo"+ vo);
-			memberMapper.addMember2(vo);
-			System.out.println(vo);
-			session.commit();
-	}
-	
-	@Test
-	public void testAddMember3() {
-			
-		TMemberVO vo = TMemberVO.builder()
-					.id("ysa")
-					.pwd("1111")
-					.name("양산아")
-					.email("ysa@naver.com")
-					.build();
-			System.out.println("vo"+ vo);
-			memberMapper.addMember3(vo);
-			System.out.println(vo);
-			session.commit();
-			
-	}
+
 	
 	
 	
-	
-//	xml
+//	xml 테스트
 	@Test
 	public void testGetTimeXml() {
 		try {
@@ -197,6 +159,81 @@ public class OracleDAOTest {
 		} catch (Exception e) {
 		}
 	}
+	
+//	분리된 SQL 테스트
+	
+	@Test
+	public void testFindMembersAll() {
+		List<TMemberVO> vo = memberSqlDivMapper.selectAll1();
+		log.info("\n mybatis mapper findMembersAll(): "+ vo);	
+	}
+	
+	@Test
+	public void testFindMembersAll2() {
+		List<TMemberVO> vo = memberSqlDivMapper.selectAll2();
+		log.info("\n mybatis mapper findMembersAll2(): "+ vo);	
+	}
+	
+	@Test
+	public void testAddMember2() {
+			
+		TMemberVO vo = TMemberVO.builder()
+					.id("ysa")
+					.pwd("1111")
+					.name("양산아")
+					.email("ysa@naver.com")
+					.build();
+			System.out.println("vo"+ vo);
+			memberSqlDivMapper.addMember2(vo);
+			System.out.println(vo);
+			session.commit();
+	}
+	
+	@Test
+	public void testAddMember3() {
+			
+		TMemberVO vo = TMemberVO.builder()
+					.id("ysa")
+					.pwd("1111")
+					.name("양산아")
+					.email("ysa@naver.com")
+					.build();
+			System.out.println("vo"+ vo);
+			memberSqlDivMapper.addMember3(vo);
+			System.out.println(vo);
+			session.commit();
+	}
+	
+	@Test
+	public void testAddMember4() {
+			
+		TMemberVO vo = TMemberVO.builder()
+					.id("ysa")
+					.pwd("1111")
+					.name("양산아")
+					.email("ysa@naver.com")
+					.build();
+			System.out.println("vo"+ vo);
+			memberSqlDivMapper.addMember4(vo);
+			System.out.println(vo);
+			session.commit();
+	}
+	
+	@Test
+	public void testAddMember5() {
+			
+		TMemberVO vo = TMemberVO.builder()
+					.id("ysa")
+					.pwd("1111")
+					.name("양산아")
+					.email("ysa@naver.com")
+					.build();
+			System.out.println("vo"+ vo);
+			memberSqlDivMapper.addMember5(vo);
+			System.out.println(vo);
+			session.commit();
+	}
+	
 	
 //	@Test
 //	public void  testTime() throws Exception{

@@ -47,13 +47,13 @@
                 
                     <div class="row d-flex">
                         <div class="col-md-6">
-                            <a href="${ctxPath}/reg/update.do?id=${member.id}" class="btn btn-success btn-sm m-1">수정</a>
-                            <a href="${ctxPath}/member/deleteMember.do?id=${member.id}" class="btn btn-warning btn-sm m-1" id="delBtn">삭제</a>
+                            <a href="${ctxPath}/tmember/update.do?id=${member.id}" class="btn btn-success btn-sm m-1">수정</a>
+                            <a href="${ctxPath}/tmember/delete.do?id=${member.id}" class="btn btn-warning btn-sm m-1" id="delBtn">삭제</a>
                             <input type="hidden" value="${member.id}" id="memberId">
                             <input type="hidden" value="${ctxPath}" id="path">
                         </div>
                         <div class="col-md-2">
-                            <a href="${ctxPath}/member/listMember.do" class="btn btn-dark btn-sm m-1">목록</a>
+                            <a href="${ctxPath}/tmember/list.do" class="btn btn-dark btn-sm m-1">목록</a>
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
     			console.log('id: '+id, 'path: '+path)
     			
     			if (isDelete){
-    				location.href=path+"/member/deleteMember.do?id="+id;
+    				location.href=path+"/tmember/delete.do?id="+id;
     			}
     		});
     	});

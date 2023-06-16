@@ -41,7 +41,7 @@ public class TMemberController  extends HttpServlet{
 		
 		if (action == null || action.equals("/list.do")) {
 			try {
-				List<TMemberDTO> memberList = memberService.memberList();
+				List<TMemberDTO> memberList = memberService.listMember();
 				req.setAttribute("memberList", memberList);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -134,7 +134,7 @@ public class TMemberController  extends HttpServlet{
 //		} 
 	else {
 			
-			List<TMemberDTO> memberList = memberService.memberList();
+			List<TMemberDTO> memberList = memberService.listMember();
 			req.setAttribute("memberList", memberList);
 			nextPage ="/member2/list.jsp";
 			req.getRequestDispatcher(nextPage).forward(req, resp);

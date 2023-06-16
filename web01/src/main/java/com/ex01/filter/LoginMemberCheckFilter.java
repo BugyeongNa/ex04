@@ -22,7 +22,7 @@ import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @WebFilter(urlPatterns = { "/loginuitest/board/*" })
-public class LoginCheckFilter2 implements Filter {
+public class LoginMemberCheckFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)

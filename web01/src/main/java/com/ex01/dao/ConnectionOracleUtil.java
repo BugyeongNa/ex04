@@ -16,6 +16,7 @@ import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 
 import com.ex01.util.MybatisManager;
 import com.member.mapper.MemberMapper;
+import com.member.mapper.MemberSqlDivMapper;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -58,7 +59,8 @@ public enum ConnectionOracleUtil {
 		Configuration configuration = new Configuration(environment);
 		
 //		xml sql
-		configuration.addMapper(MemberMapper.class);
+//		configuration.addMapper(MemberMapper.class);
+		configuration.addMapper(MemberSqlDivMapper.class);
 		
 		log.info("sqlSessionFactory: "+ new SqlSessionFactoryBuilder().build(configuration) );
 		return new SqlSessionFactoryBuilder().build(configuration);

@@ -22,7 +22,7 @@
             </div>
             <hr>
             <div class="w-75 border p-3 m-3 m-auto ">
-                <form action="${ctxPath}/reg/update.do" method="post" id="updateForm">
+                <form action="${ctxPath}/tmember/update.do" method="post" id="updateForm">
                     <div class="mb-3">
                         <label  class="form-label">ID</label>
                         <label  class="form-label">${member.id}</label>
@@ -42,7 +42,7 @@
                     </div>
                     <div class="mb-3">
                         <input type="submit" id="updateBtn" class="btn btn-success" value="수정하기">
-                        <a href="${ctxPath}/member/listMember.do" class="btn btn-secondary">목록</a>
+                        <a href="${ctxPath}/tmember/listMember.do" class="btn btn-secondary">목록</a>
                     </div>
                 </form>
             </div>

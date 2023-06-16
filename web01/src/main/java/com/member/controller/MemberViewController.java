@@ -14,7 +14,7 @@ import com.member.service.MemberService;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
-@WebServlet("/reg/view.do")
+@WebServlet("/tmember/view.do")
 public class MemberViewController extends HttpServlet{
 	
 	private MemberService memberService = MemberService.INSTANCE;

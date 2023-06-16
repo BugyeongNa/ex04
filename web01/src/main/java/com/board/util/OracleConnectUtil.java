@@ -17,7 +17,7 @@ public enum OracleConnectUtil {
 		
 		config.setDriverClassName("oracle.jdbc.OracleDriver");
 		config.setJdbcUrl("jdbc:oracle:thin:@localhost:1521/xe");
-		config.setUsername("user1");
+		config.setUsername("user2");
 		config.setPassword("1234");
 		
 		ds = new HikariDataSource(config);

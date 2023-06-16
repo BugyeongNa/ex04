@@ -39,7 +39,7 @@ public class MemberListController extends HttpServlet{
 		
 		if (action == null || action.equals("/listMember.do")) {
 			try {
-				List<TMemberDTO> memberList = memberService.memberList();
+				List<TMemberDTO> memberList = memberService.listMember();
 				req.setAttribute("memberList", memberList);
 			} catch (Exception e) {
 				e.printStackTrace();

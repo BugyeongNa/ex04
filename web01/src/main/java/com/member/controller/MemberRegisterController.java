@@ -10,15 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ex01.dto.TMemberDTO;
 import com.ex01.service.SqlMemberService;
+import com.member.service.MemberService;
 
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
-@WebServlet("/reg/insert.do")
-public class MemberRegusterController extends HttpServlet {
+@WebServlet("/tmember/insert.do")
+public class MemberRegisterController extends HttpServlet {
 
 //	서비스 객체를 생성(dao, modelMapper)
-	private SqlMemberService memberService = SqlMemberService.INSTANCE;
+	private MemberService memberService = MemberService.INSTANCE;
 	String action = null;
 	String nextPage = null;
 	
@@ -40,9 +41,9 @@ public class MemberRegusterController extends HttpServlet {
 		dto.setEmail(req.getParameter("email"));
 		
 		// 수정작업 서비스 요청(DB)
-//		int result = memberService.addMember(dto);
+		memberService.addMember(dto);
 		
-		nextPage = "/member2/memberForm.jsp";
+		nextPage = "/tmember/list.do";
 		req.getRequestDispatcher(nextPage).forward(req, resp);
 	}
 
